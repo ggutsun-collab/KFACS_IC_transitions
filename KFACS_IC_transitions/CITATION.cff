@@ -12,6 +12,7 @@ authors:
 version: "1.0.0"
 date-released: "2026-09-08"
 license: MIT
+doi: "10.5281/zenodo.22654943"
 repository-code: "https://github.com/ggutsun-collab/KFACS_IC_transitions"
 keywords:
   - intrinsic capacity
