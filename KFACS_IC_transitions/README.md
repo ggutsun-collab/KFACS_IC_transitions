@@ -4,7 +4,7 @@ Analysis code for *Intrinsic capacity grades risk and recovery within frailty ph
 categories* (Korean Frailty and Aging Cohort Study, n = 3,011, five biennial waves,
 500 deaths).
 
-**Archive DOI:** [AUTHOR ACTION — insert Zenodo version DOI after the v1.0.0 release]
+**Archive DOI:** https://doi.org/10.5281/zenodo.22654943 (v1.0.0, code as submitted)
 **Repository:** https://github.com/ggutsun-collab/KFACS_IC_transitions
 
 ---
