@@ -1,0 +1,135 @@
+
+============================================================================
+1. iv 의 from/to 숫자 열이 ADL 인가
+============================================================================
+iv$from 값: 1, 2, 3
+iv$to   값: 1, 2, 3, 4
+iv$type 값: obs
+from x from_lab 교차표:
+   
+    Frail Pre-frail Robust
+  1     0         0   4959
+  2     0      5193      0
+  3  1419         0      0
+  iv$from / iv$to (그대로)        일치 0/9   Normal→Mild=0 Normal→Severe=0 Normal→Death=0 Mild→Normal=0 Mild→Severe=1512 Mild→Death=157 Severe→Normal=0 Severe→Mild=1308 Severe→Death=821
+
+============================================================================
+2. d 의 상태 변수 후보를 구간에 얹어 대조
+============================================================================
+후보 열: state, state_obs, adl_state, state_lab, state_label, state_obs_label, adl_3cat, adl_2cat
+
+state 분포:
+
+    1     2     3 
+11756  2011   315 
+
+state_obs 분포:
+
+   1    2    3 <NA> 
+9913 1405  196 2568 
+
+adl_state 분포:
+
+    1     2 
+11787  2295 
+
+state_lab 분포:
+
+Normal   Mild Severe  Death 
+ 11756   2011    315      0 
+
+state_label 분포:
+
+  Mild Normal Severe 
+  2011  11756    315 
+
+state_obs_label 분포:
+
+  Mild Normal Severe   <NA> 
+  1405   9913    196   2568 
+
+adl_3cat 분포:
+
+   0    1    2 <NA> 
+9913 1405  139 2625 
+
+adl_2cat 분포:
+
+   0    1 <NA> 
+9913 1544 2625 
+  d$state (구간에 얹음)         일치 0/9   Normal→Mild=0 Normal→Severe=0 Normal→Death=0 Mild→Normal=0 Mild→Severe=969 Mild→Death=502 Severe→Normal=0 Severe→Mild=651 Severe→Death=171
+  d$state_obs (구간에 얹음)     일치 0/9   Normal→Mild=0 Normal→Severe=0 Normal→Death=0 Mild→Normal=0 Mild→Severe=658 Mild→Death=273 Severe→Normal=0 Severe→Mild=499 Severe→Death=85
+  d$adl_state (구간에 얹음)     일치 0/9   Normal→Mild=0 Normal→Severe=0 Normal→Death=0 Mild→Normal=0 Mild→Severe=1087 Mild→Death=371 Severe→Normal=0 Severe→Mild=671 Severe→Death=129
+  d$state_lab (구간에 얹음)     일치 9/9   Normal→Mild=969 Normal→Severe=141 Normal→Death=361 Mild→Normal=651 Mild→Severe=74 Mild→Death=97 Severe→Normal=21 Severe→Mild=30 Severe→Death=42
+  d$state_label (구간에 얹음)   일치 9/9   Normal→Mild=969 Normal→Severe=141 Normal→Death=361 Mild→Normal=651 Mild→Severe=74 Mild→Death=97 Severe→Normal=21 Severe→Mild=30 Severe→Death=42
+  d$state_obs_label (구간에 얹음) 일치 0/9   Normal→Mild=658 Normal→Severe=70 Normal→Death=203 Mild→Normal=499 Mild→Severe=40 Mild→Death=45 Severe→Normal=3 Severe→Mild=13 Severe→Death=32
+  d$adl_3cat (구간에 얹음)      일치 0/9   Normal→Mild=658 Normal→Severe=53 Normal→Death=203 Mild→Normal=499 Mild→Severe=35 Mild→Death=45 Severe→Normal=3 Severe→Mild=12 Severe→Death=14
+  d$adl_2cat (구간에 얹음)      일치 0/9   Normal→Mild=711 Normal→Severe=0 Normal→Death=203 Mild→Normal=502 Mild→Severe=0 Mild→Death=59 Severe→Normal=0 Severe→Mild=0 Severe→Death=0
+
+in_risk 분포:
+
+ TRUE 
+14082 
+
+============================================================================
+3. 판정
+============================================================================
+최선 후보: state_lab  (일치 9/9)
+>>> 재현 성공. 이 변수로 추정을 진행합니다.
+   from     to events    py   IRR    lo    hi                       p
+ Normal   Mild    969 19464 0.805 0.752 0.863 0.000000000770300684775
+ Normal Severe    141 19464 0.600 0.512 0.702 0.000000000206352849654
+ Normal  Death    361 19464 0.596 0.533 0.667 0.000000000000000000106
+   Mild Normal    651  2943 1.311 1.224 1.403 0.000000000000006869588
+   Mild Severe     74  2943 0.610 0.495 0.751 0.000003378639626260275
+   Mild  Death     97  2943 0.617 0.524 0.727 0.000000007707949218044
+ Severe Normal     21   323 2.254 1.456 3.488 0.000265342995889814308
+ Severe   Mild     30   323 1.199 0.872 1.648 0.263447530947322594574
+ Severe  Death     42   323 0.748 0.578 0.968 0.027447333310678181939
+
+============================================================================
+4. 회복 패널 — 사망 코딩 수정본
+============================================================================
+회복 정의에 사용할 상태 변수: state_lab
+wave-1 ADL 장애 보유자 = 337 | robust = 103  [원고 103]
+       0=cens 1=recov 2=death
+frailty   0   1   2
+      0   9  90   4
+      1  25 130  23
+      2  13  28  15
+>>> 사망 열이 0 이 아니어야 정상입니다.
+
+---- frailty_3cat = 0 (n=103, 회복 90, 사망 4) ----
+ group CIF5_recovery
+ tS=T1          75.0
+ tS=T2          78.6
+ tS=T3          84.4
+  Fine-Gray sHR  = 1.30 (0.95-1.78), P = 0.0952
+ tS  n recov death
+ T1 16    12     2
+ T2 42    37     1
+ T3 45    41     1
+
+---- frailty_3cat = 1 (n=178, 회복 130, 사망 23) ----
+ group CIF5_recovery
+ tS=T1          60.9
+ tS=T2          75.5
+ tS=T3          80.0
+  Fine-Gray sHR  = 1.47 (1.15-1.88), P = 0.00188
+ tS   n recov death
+ T1 110    73    16
+ T2  53    44     5
+ T3  15    13     2
+
+---- frailty_3cat = 2 (n=56, 회복 28, 사망 15) ----
+ group CIF5_recovery
+ tS=T1          41.5
+ tS=T2          66.7
+  Fine-Gray sHR  = 1.39 (0.93-2.09), P = 0.107
+ tS  n recov death
+ T1 53    26    15
+ T2  3     2     0
+
+============================================================================
+끝
+============================================================================

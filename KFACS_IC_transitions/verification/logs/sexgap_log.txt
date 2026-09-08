@@ -1,0 +1,228 @@
+성별 변수: sex_unified
+sexv
+   1    2 
+1429 1582 
+
+============================================================================
+0. d 의 전체 열 이름 — 17개 IC 지표를 특정하기 위해
+============================================================================
+      [,1]                  [,2]               [,3]              [,4]             
+ [1,] id                    wave               sex_unified       age_unified      
+ [2,] area_3cat             edu_bl             educ_bl           edu_high_bl      
+ [3,] income_high           living_alone       marri_status      alcohol_3cat     
+ [4,] smoking_3cat          smoking_current    pa_met_min_wk     pa_kcal_wk       
+ [5,] strength_days         strength_3cat      strength_2plus    phys_height      
+ [6,] phys_bmi              phys_sbp           phys_dbp          phys_pulse       
+ [7,] phys_calf_max         phys_calf_dom_mean phys_hgs_max      phys_gait_speed  
+ [8,] phys_chairstand       sppb_total         sppb_balance      sppb_gait        
+ [9,] comorbid_count        comorbid_3cat      n_rx_drug         polypharmacy     
+[10,] GS_ms                 rev_CST            loss_of_Bwt       Appetite         
+[11,] HGS                   rev_logMAR         rev_PTA           Orientation      
+[12,] Attention_Calculation Language           Visuospatial      Negative_affect  
+[13,] Motivation            gLIC               gLIC_z            gLIC_tertile     
+[14,] LIC_Vitality          LIC_Sensory        LIC_Cognition     LIC_Psychological
+[15,] LIC_Hearing           kicope_locomotor   kicope_vitality   kicope_sensory   
+[16,] kicope_psychological  KICOPE             KICOPE_z          KICOPE_tertile   
+[17,] cic_sppb20            cic_mna10          cic_hgs10         cic_va10         
+[18,] cic_mmse20            cic_gds20          VA                HA               
+[19,] sf12_pcs              sf12_mcs           eq5d_index        eq_vas_clean     
+[20,] sgdsk_score           brs_score          snaq_score        mna_scr          
+[21,] mna_total             mna_malnutrition   mna_j_meals       mna_k1_protein   
+[22,] mna_k3_protein        lotr_score         covid_vaccinated  covid_infected   
+[23,] frailty_3cat          frailty_2cat       adl_score         adl_2cat         
+[24,] iadl_score            iadl_2cat          iadl_3cat         death_event      
+[25,] followup_years        death_date_new     death_time_method FUP              
+[26,] state_obs             state_label        state_obs_label   death_wave_id    
+[27,] .rowid                .ageband           .female           gLIC_zW1         
+[28,] imp_set               adl_state          time              bage             
+[29,] gLIC_z_orig           gLIC_tert_W1cut    age_visit         age_c            
+[30,] comorbid_bl           comorbid_tv        edu_bl_f          income_bl_f      
+[31,] area_bl_f             ses_index          frail_state       state_lab        
+      [,5]            
+ [1,] age_365         
+ [2,] income_3cat     
+ [3,] alcohol_heavy   
+ [4,] pa_freq_3cat    
+ [5,] phys_weight     
+ [6,] phys_waist      
+ [7,] phys_tug        
+ [8,] sppb_chair      
+ [9,] Balance         
+[10,] EXH             
+[11,] Memory          
+[12,] Positive_affect 
+[13,] LIC_Locomotor   
+[14,] LIC_Vision      
+[15,] kicope_cognition
+[16,] CIC             
+[17,] cic_ha10        
+[18,] PTA4_better     
+[19,] mmse_kc_score   
+[20,] mna_scr_group   
+[21,] mna_k2_protein  
+[22,] chs_total       
+[23,] adl_3cat        
+[24,] death_wave      
+[25,] state           
+[26,] in_risk         
+[27,] gLIC_tertW1     
+[28,] age0            
+[29,] sex_f           
+[30,] alone_bl_f      
+[31,] frailty_lab     
+
+============================================================================
+1. gLIC 계열 변수의 성별 격차
+============================================================================
+gLIC 계열 열: gLIC, gLIC_z, gLIC_tertile, gLIC_zW1, gLIC_tertW1, gLIC_z_orig, gLIC_tert_W1cut
+
+gLIC :
+     n   mean    sd
+1 1429  0.627 0.682
+2 1582 -0.122 0.752
+  표준화 평균차(SMD) = -1.044   |0.2| 이상이면 실질적 격차
+
+gLIC_z :
+     n   mean    sd
+1 1429  0.485 0.841
+2 1582 -0.438 0.927
+  표준화 평균차(SMD) = -1.044   |0.2| 이상이면 실질적 격차
+
+gLIC_tertile (범주형):
+    
+x      1   2
+  T1 143 565
+  T2 345 646
+  T3 941 371
+
+gLIC_zW1 :
+     n   mean    sd
+1 1429  0.485 0.841
+2 1582 -0.438 0.927
+  표준화 평균차(SMD) = -1.044   |0.2| 이상이면 실질적 격차
+
+gLIC_tertW1 (범주형):
+    
+x      1   2
+  T1 228 776
+  T2 407 596
+  T3 794 210
+
+gLIC_z_orig :
+     n   mean    sd
+1 1429  0.718 0.781
+2 1582 -0.140 0.861
+  표준화 평균차(SMD) = -1.044   |0.2| 이상이면 실질적 격차
+
+gLIC_tert_W1cut (범주형):
+    
+x      1   2
+  T1 228 776
+  T2 407 596
+  T3 794 210
+
+>>> gLIC_z 의 SMD 가 크면, 성별 절단점을 쓴 지표가 있더라도
+>>> 최종 인자점수는 성별 중립이 아닙니다. 이것이 결정적 수치입니다.
+
+============================================================================
+2. 어느 지표가 격차를 만드는가 — 모든 수치형 열의 성별 SMD
+============================================================================
+성별 격차가 큰 순서 (상위 30개):
+                   var n_ok    SMD
+           phys_height 3011 -2.428
+          phys_hgs_max 3010 -2.170
+             cic_hgs10 3011 -2.170
+                   HGS 3011 -2.170
+          smoking_3cat 2993 -1.972
+                  gLIC 3011 -1.044
+                gLIC_z 3011 -1.044
+              gLIC_zW1 3011 -1.044
+           gLIC_z_orig 3011 -1.044
+           phys_weight 3011 -0.925
+          marri_status 3011  0.871
+                edu_bl 3003 -0.832
+               educ_bl 3009 -0.810
+         alcohol_heavy 2158 -0.754
+           edu_high_bl 3003 -0.717
+          living_alone 3011  0.687
+             ses_index 3011 -0.682
+                   CIC 3011 -0.616
+              sf12_pcs 2968 -0.615
+       kicope_vitality 3011 -0.589
+      kicope_locomotor 3011 -0.548
+            pa_kcal_wk 2979 -0.535
+              KICOPE_z 3011 -0.502
+                KICOPE 3011 -0.502
+            eq5d_index 3008 -0.499
+  kicope_psychological 3011 -0.489
+                   EXH 3011 -0.487
+          alcohol_3cat 2158 -0.476
+ Attention_Calculation 3011 -0.442
+       smoking_current 3011 -0.430
+
+>>> 상위에 악력/보행속도/근력이 있으면 -> 수행지표가 여전히 성별 의존적입니다.
+>>> 상위에 인지/교육/우울이 있으면  -> 격차의 출처는 다른 영역입니다.
+>>> 어느 쪽인지에 따라 원고 Methods 와 Limitations 의 문장이 완전히 달라집니다.
+
+============================================================================
+3. 교육으로 설명되는가 (한국 1930-40년대생 여성의 교육연수 격차)
+============================================================================
+교육 변수: edu_bl
+      
+         1   2
+  0     58 291
+  1      9  43
+  2     14  49
+  3     19  65
+  4     15  35
+  5     21  31
+  6    249 441
+  7     28  27
+  8     30  32
+  9    216 180
+  10    17  15
+  11    23   8
+  12   324 232
+  13    13   5
+  14    50  36
+  15     9   8
+  16   258  69
+  17     3   0
+  18    51   6
+  19     5   3
+  20     6   1
+  21     2   0
+  22     2   1
+  24     1   0
+  25     1   0
+  26     1   0
+  <NA>   4   4
+
+gLIC_z 의 성별 계수:
+  교육 미보정 : -0.924
+  교육 보정   : -0.624
+  감쇠 = 32.5%
+>>> 감쇠가 크면 성별 격차의 상당 부분이 교육을 통한 인지영역 차이입니다.
+
+============================================================================
+4. robust 층 안에서의 확인
+============================================================================
+robust n = 1349 | 남 715 / 여 634
+    n  mean    sd
+1 715 0.959 0.529
+2 634 0.205 0.567
+robust 층 내 gLIC_z 성별 SMD = 1.375
+
+tertile x 성별:
+    
+       1   2
+  T1  10  96
+  T2 119 351
+  T3 586 187
+
+>>> frailty 기준은 성별 절단점을 써서 robust 층이 남634/여715 로 균형인데,
+>>> 그 안에서 IC tertile 만 극단적으로 갈린다면 격차의 출처는 IC 점수 구성입니다.
+
+============================================================================
+끝
+============================================================================
