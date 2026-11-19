@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper and the archived release."
+title: "Analysis code for: Intrinsic capacity as a marker of resilience across the frailty spectrum (KFACS)"
+abstract: >-
+  Reproduction code for a five-wave analysis of intrinsic capacity and
+  bidirectional transitions among disability states, frailty states and death in
+  the Korean Frailty and Aging Cohort Study (n = 3,011).
+authors:
+  - family-names: Kim
+    given-names: Sunyoung
+    affiliation: Kyung Hee University College of Medicine
+version: "1.1.0"
+date-released: "2026-11-17"
+license: MIT
+doi: "10.5281/zenodo.24358027"
+repository-code: "https://github.com/ggutsun-collab/KFACS_IC_transitions"
+keywords:
+  - intrinsic capacity
+  - frailty
+  - disability
+  - multistate model
+  - resilience
+  - healthy ageing

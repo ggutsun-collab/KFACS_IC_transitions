@@ -1,0 +1,88 @@
+
+============================================================================
+0. 원자료 열 탐색 — 무엇이 있는지 먼저 확인
+============================================================================
+d    | wave           : wave, death_wave, death_wave_id, age_visit
+d    | ^time$         : FUP, time
+d    | death          : death_event, death_wave, death_date_new, death_time_method, death_wave_id
+d    | frail          : chs_total, frailty_3cat, frailty_2cat, frail_state, frailty_lab
+d    | adl            : adl_score, adl_2cat, adl_3cat, iadl_score, iadl_2cat, iadl_3cat, adl_state
+d    | glic           : gLIC, gLIC_z, gLIC_tertile, gLIC_zW1, gLIC_tertW1, gLIC_z_orig, gLIC_tert_W1cut
+d    | age            : age_unified, age_365, Language, .ageband, bage, age0, age_visit, age_c
+d    | sex            : sex_unified, .female, sex_f
+d    | edu            : edu_bl, educ_bl, edu_high_bl, edu_bl_f
+d    | income         : income_3cat, income_high, income_bl_f
+d    | area           : area_3cat, area_bl_f
+d    | comorb         : comorbid_count, comorbid_3cat, covid_vaccinated, comorbid_bl, comorbid_tv
+d    | date           : death_date_new
+
+iv 열: id, k, t0, t1, dur, from, to, type, gLIC_z, gLIC_tert, age_c, sex_f, comorbid_count, comorbid_bl, edu_bl_f, income_bl_f, alone_bl_f, area_bl_f, ses_index, comorbid_tv, bage, from_lab, to_lab
+
+============================================================================
+1. wave-1 프레임 재구성
+============================================================================
+wave-1 행 = 3011, 고유 id = 3011
+사망 = 500, t_death 결측 = 0
+t_death 요약:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   8.000   8.000   6.672   8.000   8.000 
+사망자의 t_death 요약:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      0       0       0       0       0       0 
+>> time 열이 '년' 단위가 아니면(예: 일/월) 위 수치가 이상하게 보입니다. 확인하십시오.
+
+iv 첫 구간 행 = 3011, gLIC_z 결측 = 0
+결합 후 행 = 3011, frailty_3cat 결측 = 0, gLIC_z 결측 = 0
+
+ADL 후보 열: adl_score, adl_2cat, adl_3cat, iadl_score, iadl_2cat, iadl_3cat, adl_state
+  adl_score:
+
+   0    1    2    3    4    5    6 
+2674  309   17    6    3    1    1 
+  adl_2cat:
+
+   0    1 
+2674  337 
+  adl_3cat:
+
+   0    1    2 
+2674  326   11 
+  iadl_score:
+
+   0    1    2    3    4    5    6    7    8    9   10 
+2519  298   97   53   19    9    6    7    1    1    1 
+  iadl_2cat:
+
+   0    1 <NA> 
+2514  492    5 
+
+============================================================================
+2. 원고 기준값 검증 — 여기서 다 맞아야 분석을 진행합니다
+============================================================================
+  전체 n                                    3,011  (원고 3,011)   OK
+  robust (frailty_3cat==0)                    1,349  (원고 1,349)   OK
+  pre-frail                                   1,416  (원고 1,416)   OK
+  frail                                         246  (원고 246)   OK
+  총 사망                                    500  (원고 500)   OK
+
+추적 중앙값 = 8.00, 최대 = 8.00   (원고: 중앙값 8.0, 최대 8.2)
+
+============================================================================
+3. robust 층 재분석  (검증 통과 시에만)
+============================================================================
+robust 분석 n = 1349, 사망 = 142
+코호트 tertile 절단점 = -0.3032, 0.5193
+보정변수: age_c, bage, sex_f, comorbid_count, comorbid_bl, edu_bl_f, income_bl_f, area_bl_f
+ tert   n d5 d8   km5   km8
+   T1 106 12 12 11.32 11.32
+   T2 470 54 54 11.49 11.49
+   T3 773 76 76  9.83  9.83
+원고 Table 3 : T1 n=106 d=2 (1.9%) | T2 n=470 d=23 (4.9%) | T3 n=773 d=26 (3.4%)
+5년 per +1 s.d. : HR 0.558 (0.420-0.740), 사망 142 / 1349, P = 5.36e-05
+8년 per +1 s.d. : HR 0.558 (0.420-0.740), 사망 142 / 1349, P = 5.36e-05
+
+검증 통과 프레임 저장: rebuild_out/wave1_frame_SOURCE.rds, robust_frame_SOURCE.rds
+
+============================================================================
+끝
+============================================================================
