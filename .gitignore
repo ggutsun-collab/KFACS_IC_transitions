@@ -1,0 +1,22 @@
+# participant-level data: never committed
+*.rds
+*.rda
+*.RData
+*.sav
+*.dta
+*.csv
+*.xlsx
+*.xls
+*.docx
+data/
+result/
+**/output/
+!03_figures/output/*.csv
+!verification/logs/*.txt
+# R session clutter
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.DS_Store
+Thumbs.db
